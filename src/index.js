@@ -53,7 +53,39 @@ function handleSearchSubmit(event) {
   searchCity(searchInput.value);
 }
 
+function displayForecast() {
+  let days = ["Wed", "Thurs", "Fri", "Sat", "Sun"];
+  let forecastHtml = "";
+
+  days.forEach(function (day) {
+    forecastHtml =
+      forecastHtml +
+      `
+<div class="container">
+   <div class="row-1">
+    <div class="col-2">
+     <div class="weather-forecast-date">${day}</div>
+                <img
+                  src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/broken-clouds-day.png"
+                  width="45px"
+                />
+
+         <div class="weather-forecast-temperatures">
+          <span class="weather-forecast-temp-max">18°C</span>
+          <span class="weather-forecast-temp-min">12°C</span>
+     </div>
+    </div>
+  </div> 
+</div>
+  `;
+  });
+
+  let forecast = document.querySelector("#forecast");
+  forecast.innerHTML = forecastHtml;
+}
+
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
 
 searchCity("Port Louis");
+displayForecast();
