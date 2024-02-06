@@ -86,6 +86,7 @@ main {
 }
 
 .weather-forecast {
+  display: flex;
   margin-top: 20px;
   text-align: center;
   color: black;
@@ -98,6 +99,7 @@ main {
 
 .weather-forecast-temperatures {
   font-size: 13px;
+  display: flex;
 }
 
 .weather-forecast-temp-min {
