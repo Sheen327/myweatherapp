@@ -16,6 +16,8 @@ function refreshWeather(response) {
   humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
   windElement.innerHTML = `${response.data.wind.speed} km/h`;
   temperatureElement.innerHTML = Math.round(temperature);
+
+  getForecast(response.data.city);
 }
 
 function formatDate(date) {
@@ -53,7 +55,13 @@ function handleSearchSubmit(event) {
   searchCity(searchInput.value);
 }
 
-function displayForecast() {
+function getForecast(city) {
+  let apiKey = "1b524a706tf6eae1f36e8097foa05f9c";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}`;
+  axios(apiUrl).then(displayForecast);
+}
+
+function displayForecast(response) {
   let days = ["Wed", "Thurs", "Fri", "Sat", "Sun"];
   let forecastHtml = "";
 
@@ -71,7 +79,7 @@ function displayForecast() {
                 />
 
          <div class="weather-forecast-temperatures">
-          <span class="weather-forecast-temp-max">18°C</span>
+          <span class="weather-forecast-temp-max">18°C</span> 
           <span class="weather-forecast-temp-min">12°C</span>
      </div>
     </div>
@@ -88,4 +96,3 @@ let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
 
 searchCity("Port Louis");
-displayForecast();
